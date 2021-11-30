@@ -12,9 +12,9 @@
 
 %% API
 -export([
-    do/1
+    sorted_squares/1
 ]).
 
-%% TODO
-do(_) ->
-    ok.
+-spec sorted_squares(Nums :: [integer()]) -> [integer()].
+sorted_squares(Nums) ->
+    lists:sort([abs(N) * abs(N) || N <- Nums]).
