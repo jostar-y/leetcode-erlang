@@ -12,9 +12,17 @@
 
 %% API
 -export([
-    do/1
+    last_stone_weight/1
 ]).
 
-%% TODO
-do(_) ->
-    ok.
+-spec last_stone_weight(Stones :: [integer()]) -> integer().
+last_stone_weight(Stones) ->
+    last_stone_weight_(lists:reverse(lists:sort(Stones))).
+
+last_stone_weight_([]) -> 0;
+last_stone_weight_([H]) -> H;
+last_stone_weight_([Y, X | T]) ->
+    case Y - X of
+        0 -> last_stone_weight(T);
+        V -> last_stone_weight_(lists:reverse(lists:sort([V | T])))
+    end.
